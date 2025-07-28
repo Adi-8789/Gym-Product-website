@@ -1,20 +1,30 @@
 // src/components/Navbar.jsx
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/">GymStore</Link>
+        <Link to="/" onClick={closeMenu}>GymStore</Link>
       </div>
-      <ul className="navbar-links">
-        <li><NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>
-        <li><NavLink to="/products" className={({ isActive }) => isActive ? 'active' : ''}>Products</NavLink></li>
-        <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink></li>
-        <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
-        <li><NavLink to="/cart" className={({ isActive }) => isActive ? 'active' : ''}>Cart</NavLink></li>
+
+      <div className="menu-icon" onClick={toggleMenu}>
+        ☰
+      </div>
+
+      <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+        <li><NavLink to="/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>
+        <li><NavLink to="/products" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Products</NavLink></li>
+        <li><NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink></li>
+        <li><NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
+        <li><NavLink to="/cart" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Cart</NavLink></li>
       </ul>
     </nav>
   );

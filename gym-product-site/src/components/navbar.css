@@ -5,6 +5,9 @@
   background-color: #111;
   padding: 15px 30px;
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-logo a {
@@ -33,4 +36,41 @@
 .navbar-links a:hover,
 .navbar-links .active {
   border-bottom: 2px solid red;
+}
+
+
+.menu-icon {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #111;
+    display: none;
+    padding: 15px 0;
+    gap: 10px;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-links li {
+    display: block;
+  }
 }
